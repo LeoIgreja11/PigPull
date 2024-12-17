@@ -15,6 +15,7 @@ Dispositivo eletrônico embarcado PigPull, autoria GreenTech.
 - 1 Auto Falante 0,5W
 - 1 Cartão de Memória SD
 - 4 Potenciômetros Deslizantes 10k
+- 1 Fita LED RGB5050 5m/rolo
 
 ### Sistema Mecânico
 - 4 Guias Lineares 120mm
