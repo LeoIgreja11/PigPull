@@ -1,0 +1,46 @@
+#define pot 2
+#define RX 16
+#define TX 17
+#define pinIO 15
+
+int valorAleatorio;
+
+void setup() {
+  pinMode(pot, INPUT);
+  pinMode(pinIO, OUTPUT);
+  digitalWrite(pinIO, HIGH);
+  Serial.begin(115200);
+
+  valorAleatorio = aleatoryNumber(0, 20);
+}
+
+void loop() {
+  int leituraPot = analogRead(pot);
+  int limMax = map(leituraPot, 1770, 4095, 0, 20);
+  limMax = constrain(limMax, 0, 20);
+
+  if (limMax == valorAleatorio) {
+    digitalWrite(pinIO, LOW);
+    delay(100);
+    digitalWrite(pinIO, HIGH);
+    delay(10000);
+
+    valorAleatorio = aleatoryNumber(0, 20);
+  }
+
+  digitalWrite(pinIO, HIGH);
+  Serial.print("Potenciômetro (Raw): ");
+  Serial.print(leituraPot);
+  Serial.print(" | Potenciômetro (Mapped): ");
+  Serial.print(limMax);
+  Serial.print(" | Número PseudoAleatório : ");
+  Serial.print(valorAleatorio);
+  Serial.print(" | Pino IO: ");
+  Serial.println(digitalRead(pinIO));
+
+  delay(500);
+}
+
+int aleatoryNumber(int min, int max) {
+  return random(min, max + 1); // Inclui o número máximo no intervalo
+}
