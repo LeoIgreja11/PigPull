@@ -42,5 +42,5 @@ void loop() {
 }
 
 int aleatoryNumber(int min, int max) {
-  return random(min, max + 1); // Inclui o número máximo no intervalo
+  return random(min, max + 1); 
 }
