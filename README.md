@@ -21,4 +21,4 @@ Dispositivo eletrônico embarcado PigPull, autoria GreenTech.
 - 4 Rolamento Linear
 
 ### Sistema de Blindagem
-- Caixa de Passagem Blindada 150x100x70mm
+- 1 Caixa de Passagem Blindada 150x100x70mm
