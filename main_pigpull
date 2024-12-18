@@ -6,7 +6,6 @@
 int valorAleatorio;
 
 void setup() {
-  pinMode(pot, INPUT);
   pinMode(pinIO, OUTPUT);
   digitalWrite(pinIO, HIGH);
   Serial.begin(115200);
