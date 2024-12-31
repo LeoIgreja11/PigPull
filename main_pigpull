@@ -1,12 +1,24 @@
+#include "Freenove_WS2812_Lib_for_ESP32.h"
+
+#define LED_PIN 5     // Pino conectado à fita WS2812
+#define LED_COUNT 16  // Número de LEDs na fita
+
+
+Freenove_ESP32_WS2812 strip(LED_COUNT, LED_PIN, TYPE_GRB);  // Configuração para LEDs GRB
+
 #define pot 2
 #define RX 16
 #define TX 17
 #define pinIO 15
+#define pinBusy 4
 
 int valorAleatorio;
 
 void setup() {
+  strip.begin();
+  strip.setBrightness(255);  // Ajusta o brilho (0-255)
   pinMode(pinIO, OUTPUT);
+  pinMode(pinBusy, INPUT_PULLUP);
   digitalWrite(pinIO, HIGH);
   Serial.begin(115200);
 
@@ -22,14 +34,15 @@ void loop() {
     digitalWrite(pinIO, LOW);
     delay(100);
     digitalWrite(pinIO, HIGH);
-    delay(10000);
+    blinkAll(0, 0, 255, 300);  // Pisca 5 vezesp
+    delay(1000);
 
     valorAleatorio = aleatoryNumber(0, 20);
   }
 
   digitalWrite(pinIO, HIGH);
-  Serial.print("Potenciômetro (Raw): ");
-  Serial.print(leituraPot);
+  Serial.print("Busy (Playing): ");
+  Serial.print(digitalRead(pinBusy));
   Serial.print(" | Potenciômetro (Mapped): ");
   Serial.print(limMax);
   Serial.print(" | Número PseudoAleatório : ");
@@ -41,5 +54,21 @@ void loop() {
 }
 
 int aleatoryNumber(int min, int max) {
-  return random(min, max + 1); 
+  return random(min, max + 1);
+}
+
+void blinkAll(int r, int g, int b, int delayTime) {
+  while (!digitalRead(pinBusy)) {
+    for (int i = 0; i < LED_COUNT; i++) {
+      strip.setLedColorData(i, r, g, b);  // Liga os LEDs
+    }
+    strip.show();
+    delay(delayTime);
+
+    for (int i = 0; i < LED_COUNT; i++) {
+      strip.setLedColorData(i, 0, 0, 0);  // Apaga os LEDs
+    }
+    strip.show();
+    delay(delayTime);
+  }
 }
