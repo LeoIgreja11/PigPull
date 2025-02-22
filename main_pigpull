@@ -12,7 +12,7 @@ const int pinPot1 = 02,           // Pino analógico onde o potenciômetro (pot1
           pinPot3 = 15,           // Pino analógico onde o potenciômetro (pot1) está conectado.
           pinPot4 = 13,           // Pino analógico onde o potenciômetro (pot1) está conectado.
           pinLed = 23,           // Pino onde os LEDs WS2812 estão conectados.
-          numLed = 80;           // Número de LEDs na fita WS2812 (50 LEDs).
+          numLed = 50;           // Número de LEDs na fita WS2812 (50 LEDs).
 
 
 //===============================================
@@ -46,22 +46,22 @@ void setup() {
 void loop() {
   static unsigned long time_millis = millis();  // Armazena o tempo desde o início do programa (usado para controle de tempo sem bloqueio).
   int valuePot1 = analogRead(pinPot1),  // Lê o valor do potenciômetro (entre 0 e 1023) no pino analógico 2.
-      valuePot2 = analogRead(pinPot2),  // Lê o valor do potenciômetro (entre 0 e 1023) no pino analógico 2.
-      valuePot3 = analogRead(pinPot3),  // Lê o valor do potenciômetro (entre 0 e 1023) no pino analógico 2.
-      valuePot4 = analogRead(pinPot4);  // Lê o valor do potenciômetro (entre 0 e 1023) no pino analógico 2.
+      valuePot2 = analogRead(pinPot2),  // Lê o valor do potenciômetro (entre 0 e 1023) no pino analógico 4.
+      valuePot3 = analogRead(pinPot3),  // Lê o valor do potenciômetro (entre 0 e 1023) no pino analógico 15.
+      valuePot4 = analogRead(pinPot4);  // Lê o valor do potenciômetro (entre 0 e 1023) no pino analógico 13.
 
   int rangeMax = 3500;
 
   // A cada 1 segundo (1000 ms), executa o bloco de código a seguir
   if ((millis() - time_millis) > 1000) {
     // Imprime informações no monitor serial a cada 1 segundo
-    Serial.print("Valor do pot1:[");
+    Serial.print("Valor do pot:[");
     Serial.print(valuePot1);  // Exibe o valor lido do potenciômetro.
-    Serial.print(" | Valor do pot2:[");
+    Serial.print("] | Valor do pot:[");
     Serial.print(valuePot2);  // Exibe o valor lido do potenciômetro.
-    Serial.print(" | Valor do pot3:[");
+    Serial.print("] | Valor do pot:[");
     Serial.print(valuePot3);  // Exibe o valor lido do potenciômetro.
-    Serial.print(" | Valor do pot4:[");
+    Serial.print("] | Valor do pot:[");
     Serial.print(valuePot4);  // Exibe o valor lido do potenciômetro.
     Serial.print("] | Estado do DFPlayer Mini: [");
     Serial.print(myDFPlayer.readState() & 0x01);  // Verifica se o DFPlayer Mini está tocando (retorna 1 se estiver).
@@ -69,12 +69,10 @@ void loop() {
     Serial.print(randomLed);   // Exibe o modo atual dos LEDs.
     Serial.print("] | Modo da musica: [");
     Serial.print(randomMusic);  // Exibe a música que está tocando atualmente.
-    Serial.print("] | Estado do LED: [");
-    Serial.print(digitalRead(pinLed) & 0x01);  // Exibe a música que está tocando atualmente.
     Serial.println("]");
 
     // Se o valor do potenciômetro for maior que 3500 (próximo do valor máximo de 1023), executa a lógica
-    if ( (valuePot1 > rangeMax) /*|| (valuePot2 > rangeMax) || (valuePot3 > rangeMax) || (valuePot4 > rangeMax)  */) {
+    if ( (valuePot1 > rangeMax) || (valuePot2 > rangeMax) || (valuePot3 > rangeMax) || (valuePot4 > rangeMax) ) {
       myDFPlayer.play(randomMusic);  // Toca a música selecionada aleatoriamente.
       int colorLed;
 
