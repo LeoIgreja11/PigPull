@@ -4,7 +4,7 @@
 
 Dispositivo eletrônico embarcado PigPull, autoria GreenTech.
 
-![Descrição da Imagem](https://raw.githubusercontent.com/LeoIgreja11/PigPull/refs/heads/main/Logo.jpeg)
+<img src="https://raw.githubusercontent.com/LeoIgreja11/PigPull/refs/heads/main/Logo.jpeg" alt="Logo" width="200" height="100">
 
 ---
 ## Materiais
