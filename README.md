@@ -2,7 +2,7 @@
 
 ## Síntese
 
-Dispositivo eletrônico embarcado PigPull, autoria GreenTech.
+Dispositivo eletrônico embarcado PigPull, autoria LBCTech.
 
 <img src="https://raw.githubusercontent.com/LeoIgreja11/PigPull/refs/heads/main/Logo.jpeg" alt="Logo" width="400" height="400">
 
