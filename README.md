@@ -20,6 +20,12 @@ Dispositivo eletrônico embarcado PigPull, autoria LBCTech.
 ### Sistema Mecânico
 - 4 Guias Lineares 120mm
 - 4 Rolamento Linear
+- 4 Suportes de Aluminio
 
 ### Sistema de Blindagem
 - 1 Caixa de Passagem Blindada 150x100x70mm
+
+####  Sugestões para Melhorias no Código
+- Diminuição do Range dos potenciometros e mudança no limite total (analisar o range de cada pot para este caso)
+- Executar um novo sorteio caso o dispositivo esteja ligado, porém, sem ativação
+- Talvez elaborar um deepsleep para o esp32
