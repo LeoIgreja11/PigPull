@@ -4,7 +4,7 @@
 
 Dispositivo eletrônico embarcado PigPull, autoria LBCTech.
 
-<img src="https://raw.githubusercontent.com/LeoIgreja11/PigPull/refs/heads/main/Logo.jpeg" alt="Logo" width="400" height="400">
+<img src="https://raw.githubusercontent.com/LeoIgreja11/PigPull/refs/heads/main/Arquivos/Logo.jpeg" alt="Logo" width="400" height="400">
 
 ---
 ## Materiais
