@@ -24,7 +24,7 @@ Dispositivo eletrônico embarcado PigPull, autoria LBCTech.
 - 4 Rolamento Linear
 - 4 Suportes de Aluminio com parafuso travante
 - 4 Ganchos
-- 16 Parafusos (especificar quantos mm)
+- 16 Parafusos 6mm
 
 ### Sistema de Blindagem
 - 1 Caixa de Passagem Blindada 150x100x70mm
