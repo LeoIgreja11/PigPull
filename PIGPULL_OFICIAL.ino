@@ -16,9 +16,12 @@ const int pinPot1 = 02,           // Pino analógico onde o potenciômetro (pot1
           pinPot3 = 15,           // Pino analógico onde o potenciômetro (pot1) está conectado.
           pinPot4 = 13,           // Pino analógico onde o potenciômetro (pot1) está conectado.
           pinLed = 23,            // Pino onde os LEDs WS2812 estão conectados.
-          numLed = 50;            // Número de LEDs na fita WS2812 (50 LEDs).
-  
-
+          numLed = 150;            // Número de LEDs na fita WS2812 (50 LEDs).
+         
+  int static flag1 = 0;
+  int static flag2 = 0;
+  int static flag3 = 0;
+  int static flag4 = 0;
 
 //===============================================
 // variaveis globais
@@ -45,11 +48,13 @@ void setup() {
   pinMode(bt_mode, INPUT);
   pinMode(ledGreen, OUTPUT);
   pinMode(ledRed, OUTPUT);
+  
 
 bool switchState = digitalRead(bt_mode);
 
   setupDfPlayer();                     // Chama a função que configura o DFPlayer Mini.
-
+//===============================================
+// lógica chave
   if (switchState == HIGH) { // Se a chave estiver conectando o pino ao GND
     digitalWrite(ledGreen, LOW);
     digitalWrite(ledRed, HIGH);
@@ -63,7 +68,7 @@ bool switchState = digitalRead(bt_mode);
   randomLed =  random(1, 11);          // Seleciona aleatoriamente um modo de LED entre 1 e 10.
 
 }
-
+//===============================================
 
 void loop() {
    static unsigned long time_millis = millis();
@@ -77,10 +82,13 @@ void loop() {
   int rangeMax = 3500;
 
   if ((millis() - time_millis) > 1000) {
-    Serial.print("Chave: ");
-    Serial.println(switchState ? "ON" : "OFF"); // Exibe estado da chave no Serial Monitor
-
-    if ((valuePot1 > rangeMax) || (valuePot2 > rangeMax) || (valuePot3 > rangeMax) || (valuePot4 > rangeMax)) {
+        
+    Serial.print("POT1: "); Serial.print(analogRead(pinPot1));
+    Serial.print("| POT2: "); Serial.print(analogRead(pinPot2));
+    Serial.print("| POT3: "); Serial.print(analogRead(pinPot3)); 
+    Serial.print("| POT4: "); Serial.println(analogRead(pinPot4));
+  //==========================================================================================================
+    if ((valuePot1 > 3400) && flag1 == 0) { //TROCAR RANGE MAXIMO DE CADA POTENCIOMETRO INDIVIDUALMENTE
       myDFPlayer.play(randomMusic);
       int colorLed = random(0, 256);
 
@@ -90,6 +98,7 @@ void loop() {
 
       randomLed = random(1, 11);
       
+
       // Alteração de estado com base na chave de alavanca
         if (switchState == HIGH) { // Se a chave estiver conectando o pino ao GND
           digitalWrite(ledGreen, LOW);
@@ -100,8 +109,176 @@ void loop() {
           digitalWrite(ledGreen, HIGH);
           randomMusic = random(3, 5);
         }
+    flag1 = 1;
     }
+    else if((valuePot1 < 10) && flag1 == 1){ //TROCAR RANGE MINIMO DE CADA POTENCIOMETRO INDIVIDUALMENTE
+      myDFPlayer.play(randomMusic);
+      int colorLed = random(0, 256);
 
+      while (myDFPlayer.readState() & 0x01) {
+        ledsMod(randomLed, 0x00, 0x00, 0x00, colorLed);
+      }
+
+      randomLed = random(1, 11);
+      
+
+      // Alteração de estado com base na chave de alavanca
+        if (switchState == HIGH) { // Se a chave estiver conectando o pino ao GND
+          digitalWrite(ledGreen, LOW);
+          digitalWrite(ledRed, HIGH);
+          randomMusic = random(1, 3);
+  }     else if(switchState == LOW){
+          digitalWrite(ledRed, LOW);
+          digitalWrite(ledGreen, HIGH);
+          randomMusic = random(3, 5);
+        }
+    flag1 = 0;
+    }
+//==========================================================================================================
+//==========================================================================================================
+    if ((valuePot2 > 4000) && flag2 == 0) { //TROCAR RANGE MAXIMO DE CADA POTENCIOMETRO INDIVIDUALMENTE
+      myDFPlayer.play(randomMusic);
+      int colorLed = random(0, 256);
+
+      while (myDFPlayer.readState() & 0x01) {
+        ledsMod(randomLed, 0x00, 0x00, 0x00, colorLed);
+      }
+
+      randomLed = random(1, 11);
+      
+
+      // Alteração de estado com base na chave de alavanca
+        if (switchState == HIGH) { // Se a chave estiver conectando o pino ao GND
+          digitalWrite(ledGreen, LOW);
+          digitalWrite(ledRed, HIGH);
+          randomMusic = random(1, 3);
+  }     else if(switchState == LOW){
+          digitalWrite(ledRed, LOW);
+          digitalWrite(ledGreen, HIGH);
+          randomMusic = random(3, 5);
+        }
+    flag2 = 1;
+    }
+    else if((valuePot2 < 1600) && flag2 == 1){ //TROCAR RANGE MINIMO DE CADA POTENCIOMETRO INDIVIDUALMENTE
+      myDFPlayer.play(randomMusic);
+      int colorLed = random(0, 256);
+
+      while (myDFPlayer.readState() & 0x01) {
+        ledsMod(randomLed, 0x00, 0x00, 0x00, colorLed);
+      }
+
+      randomLed = random(1, 11);
+      
+
+      // Alteração de estado com base na chave de alavanca
+        if (switchState == HIGH) { // Se a chave estiver conectando o pino ao GND
+          digitalWrite(ledGreen, LOW);
+          digitalWrite(ledRed, HIGH);
+          randomMusic = random(1, 3);
+  }     else if(switchState == LOW){
+          digitalWrite(ledRed, LOW);
+          digitalWrite(ledGreen, HIGH);
+          randomMusic = random(3, 5);
+        }
+    flag2 = 0;
+    }
+//==========================================================================================================
+//==========================================================================================================
+    if ((valuePot3 > 4000) && flag3 == 0) { //TROCAR RANGE MAXIMO DE CADA POTENCIOMETRO INDIVIDUALMENTE
+      myDFPlayer.play(randomMusic);
+      int colorLed = random(0, 256);
+
+      while (myDFPlayer.readState() & 0x01) {
+        ledsMod(randomLed, 0x00, 0x00, 0x00, colorLed);
+      }
+
+      randomLed = random(1, 11);
+      
+
+      // Alteração de estado com base na chave de alavanca
+        if (switchState == HIGH) { // Se a chave estiver conectando o pino ao GND
+          digitalWrite(ledGreen, LOW);
+          digitalWrite(ledRed, HIGH);
+          randomMusic = random(1, 3);
+  }     else if(switchState == LOW){
+          digitalWrite(ledRed, LOW);
+          digitalWrite(ledGreen, HIGH);
+          randomMusic = random(3, 5);
+        }
+    flag3 = 1;
+    }
+    else if((valuePot3 < 10) && flag3 == 1){ //TROCAR RANGE MINIMO DE CADA POTENCIOMETRO INDIVIDUALMENTE
+      myDFPlayer.play(randomMusic);
+      int colorLed = random(0, 256);
+
+      while (myDFPlayer.readState() & 0x01) {
+        ledsMod(randomLed, 0x00, 0x00, 0x00, colorLed);
+      }
+
+      randomLed = random(1, 11);
+      
+
+      // Alteração de estado com base na chave de alavanca
+        if (switchState == HIGH) { // Se a chave estiver conectando o pino ao GND
+          digitalWrite(ledGreen, LOW);
+          digitalWrite(ledRed, HIGH);
+          randomMusic = random(1, 3);
+  }     else if(switchState == LOW){
+          digitalWrite(ledRed, LOW);
+          digitalWrite(ledGreen, HIGH);
+          randomMusic = random(3, 5);
+        }
+    flag3 = 0;
+    }
+//==========================================================================================================
+//==========================================================================================================
+    if ((valuePot4 > 4000) && flag4 == 0) { //TROCAR RANGE MAXIMO DE CADA POTENCIOMETRO INDIVIDUALMENTE
+      myDFPlayer.play(randomMusic);
+      int colorLed = random(0, 256);
+
+      while (myDFPlayer.readState() & 0x01) {
+        ledsMod(randomLed, 0x00, 0x00, 0x00, colorLed);
+      }
+
+      randomLed = random(1, 11);
+      
+
+      // Alteração de estado com base na chave de alavanca
+        if (switchState == HIGH) { // Se a chave estiver conectando o pino ao GND
+          digitalWrite(ledGreen, LOW);
+          digitalWrite(ledRed, HIGH);
+          randomMusic = random(1, 3);
+  }     else if(switchState == LOW){
+          digitalWrite(ledRed, LOW);
+          digitalWrite(ledGreen, HIGH);
+          randomMusic = random(3, 5);
+        }
+    flag4 = 1;
+    }
+    else if((valuePot4 < 1200) && flag4 == 1){ //TROCAR RANGE MINIMO DE CADA POTENCIOMETRO INDIVIDUALMENTE
+      myDFPlayer.play(randomMusic);
+      int colorLed = random(0, 256);
+
+      while (myDFPlayer.readState() & 0x01) {
+        ledsMod(randomLed, 0x00, 0x00, 0x00, colorLed);
+      }
+
+      randomLed = random(1, 11);
+      
+
+      // Alteração de estado com base na chave de alavanca
+        if (switchState == HIGH) { // Se a chave estiver conectando o pino ao GND
+          digitalWrite(ledGreen, LOW);
+          digitalWrite(ledRed, HIGH);
+          randomMusic = random(1, 3);
+  }     else if(switchState == LOW){
+          digitalWrite(ledRed, LOW);
+          digitalWrite(ledGreen, HIGH);
+          randomMusic = random(3, 5);
+        }
+    flag4 = 0;
+    }
+//==========================================================================================================
     time_millis = millis();
   }
 }
