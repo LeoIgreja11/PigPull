@@ -30,5 +30,5 @@ Dispositivo eletrônico embarcado PigPull, autoria LBCTech.
 - 1 Caixa de Passagem Blindada 150x100x70mm
 - Acabamento com impressora 3D
 
-![Visão Fronta do PigPull](https://github.com/LeoIgreja11/PigPull/refs/heads/main/Arquivos/image.jpg)
+![Visão Fronta do PigPull](https://github.com/LeoIgreja11/PigPull/refs/heads/main/Arquivos/Logo.jpeg)
 
