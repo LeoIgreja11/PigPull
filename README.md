@@ -34,5 +34,6 @@ Dispositivo eletrônico embarcado PigPull, autoria LBCTech.
 ## Dispositivo PigPull
 <img src="https://raw.githubusercontent.com/LeoIgreja11/PigPull/refs/heads/main/Arquivos/image.jpg" alt="Visão Frontal do PigPull" width="800" height="800">
 
+---
 <video src="[WhatsApp Video 2025-07-07 at 7.26.08 PM (4).mp4]" controls width="500">
 
